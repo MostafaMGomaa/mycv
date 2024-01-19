@@ -15,3 +15,6 @@ Content-Type: application/json
     "email": "gomaamostafa26@gmail.com",
     "password": "123456789", "AAA": "MHSA"
 }
+
+### GET all users
+GET http://localhost:3000/auth/
