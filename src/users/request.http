@@ -13,8 +13,24 @@ Content-Type: application/json
 
 {
     "email": "gomaamostafa26@gmail.com",
-    "password": "123456789", "AAA": "MHSA"
+    "password": "123456789A", "AAA": "MHSA"
 }
 
 ### GET all users
-GET http://localhost:3000/auth/
+GET http://localhost:3000/auth?email=gomaamostafa26@gmail.com
+
+
+### Find User with particular user with given id
+GET http://localhost:3000/auth/10
+
+### Update a user
+PATCH http://localhost:3000/auth/20
+Content-Type: application/json
+
+{
+    "email": "gomaa@email.com"
+}
+
+
+### Delete user with ID
+DELETE http://localhost:3000/auth/5
