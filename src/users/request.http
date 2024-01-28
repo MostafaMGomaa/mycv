@@ -1,19 +1,19 @@
-### Create a new valid user
+### Signup
 POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
     "email": "gomaamostafa26@gmail.com",
-    "password": "123456789"
+    "password": "123456789A"
 }
 
-### Create a new invalid user
-POST http://localhost:3000/auth/signup
+### Signin
+POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
     "email": "gomaamostafa26@gmail.com",
-    "password": "123456789A", "AAA": "MHSA"
+    "password": "123456789A" 
 }
 
 ### GET all users
