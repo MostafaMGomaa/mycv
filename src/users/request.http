@@ -16,6 +16,12 @@ Content-Type: application/json
     "password": "123456789A" 
 }
 
+### Sign out
+POST http://localhost:3000/auth/signout
+
+### GET me
+GET http://localhost:3000/auth/me
+
 ### GET all users
 GET http://localhost:3000/auth?email=gomaamostafa26@gmail.com
 
