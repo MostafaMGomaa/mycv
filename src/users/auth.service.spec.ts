@@ -5,9 +5,11 @@ import { User } from './users.entity';
 
 describe('AuthService', () => {
   let service: AuthService;
+  let fakeUserService: Partial<UsersService>;
+
   beforeEach(async () => {
     // Mock user service.
-    const fakeUserService: Partial<UsersService> = {
+    fakeUserService = {
       find: () => Promise.resolve([]),
       create: (email: string, password: string) =>
         Promise.resolve({ id: 1, email, password } as User),
@@ -28,5 +30,31 @@ describe('AuthService', () => {
 
   it('can create an instance of auth service', async () => {
     expect(service).toBeDefined();
+  });
+
+  it('creates a new user with a salted and hashed password', async () => {
+    const user = await service.signup('mostafa@email.com', 'password');
+
+    expect(user.password).not.toEqual('password');
+    const [salt, hash] = user.password.split('.');
+    expect(salt).toBeDefined();
+    expect(hash).toBeDefined();
+  });
+
+  it('throw an error if user signs up with email that is in use', async () => {
+    fakeUserService.find = () =>
+      Promise.resolve([
+        { id: 1, email: 'mostafa@mail.com', password: 'Passw@rd' } as User,
+      ]);
+
+    await expect(
+      service.signup('mostafa@email.com', 'password'),
+    ).rejects.toThrow();
+  });
+
+  it('throws if signin is called with an unuse email', async () => {
+    await expect(
+      service.signin('mostafa@email.com', 'password'),
+    ).rejects.toThrow();
   });
 });
