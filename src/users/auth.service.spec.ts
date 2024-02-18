@@ -2,6 +2,7 @@ import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
+import { BadRequestException } from '@nestjs/common';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -56,5 +57,19 @@ describe('AuthService', () => {
     await expect(
       service.signin('mostafa@email.com', 'password'),
     ).rejects.toThrow();
+  });
+
+  it('throws if an invalid password is provided', async () => {
+    fakeUserService.find = () =>
+      Promise.resolve([
+        {
+          email: 'mostafa@email.com',
+          password: '123456789',
+        } as User,
+      ]);
+
+    await expect(service.signin('mostafa@email.com', '1234')).rejects.toThrow(
+      BadRequestException,
+    );
   });
 });
