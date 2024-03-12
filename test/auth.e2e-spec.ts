@@ -15,20 +15,17 @@ describe('Authentucation System (e2e)', () => {
     await app.init();
   });
 
-  it('handles a signup request', () => {
+  it('handles a signup request', async () => {
     const testCredentials = {
       email: 'mostafa@mailsac.com',
       password: 'passw@rd',
     };
-    return request(app.getHttpServer())
+    const res = await request(app.getHttpServer())
       .post('/auth/signup')
       .send(testCredentials)
-      .expect(201)
-      .then((res) => {
-        const { id, email } = res.body;
-
-        expect(id).toBeDefined();
-        expect(email).toEqual(testCredentials.email);
-      });
+      .expect(201);
+    const { id, email } = res.body;
+    expect(id).toBeDefined();
+    expect(email).toEqual(testCredentials.email);
   });
 });
