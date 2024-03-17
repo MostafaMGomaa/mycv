@@ -17,7 +17,7 @@ describe('Authentucation System (e2e)', () => {
 
   it('handles a signup request', async () => {
     const testCredentials = {
-      email: 'mostafa@mailsac.com',
+      email: 'mostafa1@mailsac.com',
       password: 'passw@rd',
     };
 
