@@ -1,6 +1,6 @@
-import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 
 describe('Authentucation System (e2e)', () => {
@@ -20,14 +20,11 @@ describe('Authentucation System (e2e)', () => {
       email: 'mostafa1@mailsac.com',
       password: 'passw@rd',
     };
-
     const res = await request(app.getHttpServer())
       .post('/auth/signup')
       .send(testCredentials)
       .expect(201);
-
     const { id, email } = res.body;
-
     expect(id).toBeDefined();
     expect(email).toEqual(testCredentials.email);
   });
