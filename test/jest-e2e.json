@@ -16,5 +16,6 @@
   "coverageDirectory": "coverage",
   "coverageProvider": "v8",
   "rootDir": ".",
-  "extensionsToTreatAsEsm": [".ts"]
+  "extensionsToTreatAsEsm": [".ts"],
+  "setupFilesAfterEnv": ["<rootDir>/setup.ts"]
 }
