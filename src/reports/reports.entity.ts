@@ -3,17 +3,27 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Report {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column()
-  etc: string;
+  price: number;
+
+  /** Company make a vichael */
+  @Column()
+  make: string;
+
+  @Column()
+  model: string;
+
+  @Column()
+  year: number;
 
   @Column()
   mileage: number;
 
   @Column()
-  price: number;
+  lat: number;
 
   @Column()
-  type: string;
+  lng: number;
 }
